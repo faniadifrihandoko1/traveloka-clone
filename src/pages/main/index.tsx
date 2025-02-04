@@ -6,6 +6,7 @@ import SectionCoupon from "./section-coupon";
 import SectionMain from "./section-main";
 import SectionPlan from "./section-plan";
 import SectionPromo from "./section-promo";
+import SectionTrending from "./section-trending";
 
 const MainPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,6 +28,7 @@ const MainPage = () => {
       <SectionPlan />
       <SectionPromo />
       <SectionCountry />
+      <SectionTrending/>
     </>
   );
 };
