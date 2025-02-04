@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Navbar from "../../components";
+import SectionCountry from "./section-country";
 import SectionCoupon from "./section-coupon";
 import SectionMain from "./section-main";
 import SectionPlan from "./section-plan";
@@ -23,8 +24,9 @@ const MainPage = () => {
       <Navbar isScrolled={isScrolled} />
       <SectionMain />
       <SectionCoupon />
-      <SectionPlan/>
+      <SectionPlan />
       <SectionPromo />
+      <SectionCountry />
     </>
   );
 };
