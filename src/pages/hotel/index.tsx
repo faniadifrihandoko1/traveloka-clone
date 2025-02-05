@@ -25,7 +25,7 @@ const HotelPages = () => {
   const destination = searchParams.get("destination");
   const navigate = useNavigate();
 
-  const handlePilihKamar = (id:number) => {
+  const handlePilihKamar = (id: number) => {
     navigate(`/hotel/detail/${id}`);
   };
 
@@ -82,46 +82,40 @@ const HotelPages = () => {
     <>
       <div
         className={`bg-white shadow-2xl transition-all duration-300 ${
-          isFixed ? "fixed top-0 left-0 w-full z-50 shadow-lg" : ""
+          isFixed ? "md:fixed top-0 left-0 w-full z-50 shadow-lg" : ""
         }`}
         id="search-section"
       >
         <div className="max-w-7xl mx-auto px-4 py-6 bg-white">
-          <div className="bg-white pl-2 min-h-14 rounded-xl shadow-md flex  md:flex-row gap-4 border border-gray-500 ">
-            <div className="flex items-center gap-2 flex-1 border-r-2 border-gray-300 ">
-              <GrLocation color="#0194f3" size={24} cursor={"pointer"} />
+          <div className="bg-white p-4 md:min-h-14 md:p-0 rounded-xl shadow-md border border-gray-500 flex flex-col md:flex-row gap-4">
+            <div className="flex  items-center gap-2 md:px-2 flex-1 border-b md:border-b-0 md:border-r-2 border-gray-300 pb-2 md:pb-0 ">
+              <GrLocation color="#0194f3" size={24} cursor="pointer" />
               <input
                 type="text"
-                value={destination ?? "Kota, tujuan, atau nama hotel"}
+                value={destination || "Kota, tujuan, atau nama hotel"}
                 placeholder="Kota, tujuan, atau nama hotel"
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
             </div>
-
-            <div className="flex items-center gap-2 flex-1 border-r-2 border-gray-300">
-              {/* <BsCalendar className="text-gray-500 shrink-0" /> */}
-              <FaRegCalendarAlt color="#0194f3" size={24} cursor={"pointer"} />
+            <div className="flex items-center gap-2  md:px-2 flex-1 border-b md:border-b-0 md:border-r-2 border-gray-300 pb-2 md:pb-0">
+              <FaRegCalendarAlt color="#0194f3" size={24} cursor="pointer" />
               <input
                 type="text"
-                value={"05 Feb 2025 - 06 Feb 2025"}
-                placeholder=""
+                value="05 Feb 2025 - 06 Feb 2025"
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
             </div>
-
-            <div className="flex items-center gap-2 flex-1">
-              <FaBuildingUser color="#0194f3" size={24} cursor={"pointer"} />
+            <div className="flex items-center gap-2 md:px-2 flex-1 pb-2 md:pb-0">
+              <FaBuildingUser color="#0194f3" size={24} cursor="pointer" />
               <input
                 type="text"
-                value={"1 Dewasa, 0 Anak, 1 Kamar"}
-                placeholder="1 Dewasa, 0 Anak, 1 Kamar"
+                value="1 Dewasa, 0 Anak, 1 Kamar"
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
             </div>
-
-            <div className="bg-[#0194f3] text-white px-4 py-2 cursor-pointer rounded-r-xl  font-bold  flex items-center">
+            <div className="bg-[#0194f3] text-white px-4 py-2 cursor-pointer rounded-xl font-bold flex items-center justify-center md:rounded-r-xl w-full md:w-auto">
               <IoSearchSharp size={26} />
-              Cari Hotel
+              <span className="ml-2">Cari Hotel</span>
             </div>
           </div>
         </div>
@@ -129,7 +123,7 @@ const HotelPages = () => {
 
       <div className={`bg-gray-100 py-6 px-4 ${isFixed ? "md:pt-40" : ""}`}>
         <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
-          <div className="col-span-3    p-4">
+          <div className="col-span-3 hidden md:block   p-4">
             <div className="bg-[#ecf8ff] p-6 rounded-lg  mb-4 w-full flex flex-col items-center justify-center ">
               <FaMapLocationDot color="#3180d5" size={34} />
               <div className="bg-[#3180d5] px-2 py-1 rounded-2xl font-bold mt-2">
@@ -138,26 +132,28 @@ const HotelPages = () => {
             </div>
           </div>
 
-          <div className="col-span-9">
-            <div className="py-4 w-full  mx-auto  rounded-lg ">
-              <div className="flex  justify-between w-full  items-center">
-                <div className="text-black">
-                  <h1 className=" font-bold">{destination}</h1>
+          <div className="col-span-12   md:col-span-9 ">
+            <div className="md:py-4 w-full mx-auto rounded-lg">
+              <div className="flex flex-col md:flex-row md:justify-between w-full items-start md:items-center gap-4">
+                <div className="text-black w-full md:w-auto text-left md:text-left">
+                  <h1 className="font-bold">{destination}</h1>
                   <p className="text-sm text-gray-500">3 Properti Ditemukan</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="relative flex items-center gap-2 text-black">
+
+                <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+                  {/* Sorting Dropdown */}
+                  <div className="relative flex items-center gap-2 text-black w-full sm:w-auto">
                     <p className="text-xs font-semibold">
-                      Urutkan Berdasarkan :
+                      Urutkan Berdasarkan:
                     </p>
                     <button
-                      className="flex items-center gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
+                      className="flex items-center justify-between w-full sm:w-auto gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
                       onClick={handleDropdownToggle}
                     >
                       {selectedSort} <BiChevronDown size={16} />
                     </button>
                     {isDropdownOpen && (
-                      <div className="absolute text-sm font-semibold top-8 right-0  mt-2 w-64 bg-white border-gray-300 rounded shadow-lg">
+                      <div className="absolute text-sm font-semibold top-10 right-0 mt-2 w-auto md:w-full sm:w-64 bg-white border-gray-300 rounded shadow-lg z-10">
                         <button
                           className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
                           onClick={() => handleSelectSort("Harga Terendah")}
@@ -180,16 +176,17 @@ const HotelPages = () => {
                     )}
                   </div>
 
-                  <div className="relative flex items-center gap-2 text-black">
-                    <p className="text-xs font-semibold">Tampilan Harga : </p>
+                  {/* Price Display Dropdown */}
+                  <div className="relative flex items-center gap-2 text-black w-full sm:w-auto">
+                    <p className="text-xs font-semibold">Tampilan Harga:</p>
                     <button
-                      className="flex items-center gap-2 px-3 py-2 text-[#0194f3] cursor-pointer font-semibold rounded-2xl text-sm bg-white"
+                      className="flex items-center justify-between w-full sm:w-auto gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
                       onClick={handlePriceDropdownToggle}
                     >
                       {selectedPrice} <BiChevronDown size={16} />
                     </button>
                     {isPriceDropdownOpen && (
-                      <div className="absolute mt-2 text-sm font-semibold top-8 right-0 w-48 bg-white border-gray-300 rounded shadow-lg">
+                      <div className="absolute mt-2 text-sm font-semibold top-10  right-0  w-auto md:w-full sm:w-48 bg-white border-gray-300 rounded shadow-lg z-10">
                         <button
                           className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
                           onClick={() => handleSelectPrice("Include Tax")}
@@ -206,11 +203,11 @@ const HotelPages = () => {
                     )}
                   </div>
 
-                  <div className="relative flex items-center gap-2 text-black">
-                    <p className="text-xs font-semibold">Tampilan : </p>
+                  {/* View Mode Toggle */}
+                  <div className="relative flex justify-between md:justify-center items-center gap-2 text-black w-full sm:w-auto">
+                    <p className="text-xs font-semibold">Tampilan:</p>
                     <button className="flex items-center gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl text-sm bg-white">
                       <CgMenuGridO size={18} color="gray" cursor={"pointer"} />
-
                       <BsTextParagraph size={18} cursor={"pointer"} />
                     </button>
                   </div>
@@ -219,109 +216,101 @@ const HotelPages = () => {
             </div>
             <div className="flex flex-col gap-4 mt-4">
               {sortedHotels?.map((hotel) => (
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden  grid grid-cols-10 gap-4">
-                  <div className="col-span-3">
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden  md:grid md:grid-cols-10 md:gap-4">
+                  <div className="md:col-span-3">
                     <img
-                      src="https://media-hosting.imagekit.io//692087d0c0164331/20053243-cab50857832026c679f9ad91ce9e669d.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=p3TFjIuGDCJHmNYBeBCpiDnzdYOtnT5DZvKO1dLvtDv2ZSRrPB2awNXGMyGlegQlIW1CActq0fKhEkcCKeE22qJhNxl79G5Cszixj6cjjBd267YwRlJansgtEsIZN2348Gv1Au3M1PqNmm7VPxxbhcK1d~G2phxIVXA2ffRc4k7Gw~WhZlqX6OYHTrvqQGg0ELzuAAoRj9QmkcUuZziWuJBUS-W8LwhOJe4FjRTqX6YVd~WOAUGXD4jjgxssW97onSBN2BFgx5uArTzOEZgq8-ZkOIEJqV6he~coJRv~JlJanTExY7YzlENYRV6vZ6UeWddzWmTvFknY-yjBRL~F6w__"
+                      src={hotel.imageMain}
                       alt="Hotel Image"
-                      className="w-full h-48 object-cover "
+                      className="w-full h-40 object-cover"
                     />
-                    <div className="grid grid-cols-3 gap-[2px]  mt-[2px]">
-                      <img
-                        src="https://media-hosting.imagekit.io//57e46eb9bd0a4d00/1525328182573-3236x2160-FIT_AND_TRIM-55c23eedb2d7234a9d57829a4d89c211.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cjsH34kD6WTkGCMDxWT7ajUmZuALdW3GH5X2HxRzejBny9wUO-55u4QmncWLdQs4xztdUgUTp2taN6sAWYu3sAktLxVdIKPGJf3zacGoj4bgEOkt7FFSlnN56-KYfQsJBwZkI18jNYMcAttcMhT~-R~txmODn9zELOehTp4LgVzTW3tNey0WDuC~1u7s8tinZR5bigxJMPOjBMaBXpze97GfT1lQVCUFeDICziNdWv0GJg7GgFeS8UaPkpIWhzUjeEjNmLR~Uae6SRbfhxEKMmqV8vMTE4qPFHQKbtw8pzWBCKhVWPBWNxwL2L0nYhRQ-1fYetrSt~wu2Pk7GcBF8Q__"
-                        alt="Room Image 1"
-                        className="w-full h-20 object-cover "
-                      />
-                      <img
-                        src="https://media-hosting.imagekit.io//0aba5e78f92b489d/10004764-44e133170f803bd21a97c00031b7f341.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gwn9jIuiZMUwpAAGG1RHlO4-rfkxeapGUoz-KtIABfLw~g~ECPhjnvnWrsDBR1GkYQk00yZz9lp1MXXEcaHqM5TGrDtwSI6sasrjrXc2KPzyJahZozSXu3Qf2SKMLXZ0WOtTRcSQxwdnOkt~bdflHd5yncgHc9m5szYjghZTKWVcGuptRFMYY~pYJSPBzzIb4EAaEAZoDlclRy-ofpuraWSnO0CRelhiiJ6YvH8jmQ7Q5Rwmr7ZyZ~HzSFloGorZS8bxuTHRtM9bVwGIiMMhX8jD60o9UguedwLDE4AoEplvkB-mv-DeLXDkuFccyKeJjtOQH2sO2Hi2V0Fyyyjuxw__"
-                        alt="Room Image 2"
-                        className="w-full h-20 object-cover "
-                      />
-                      <img
-                        src="https://media-hosting.imagekit.io//bb67d1aef0ba4284/10000287-2420x1615-FIT_AND_TRIM-16665eb87f763449226589a0cf9f0753.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=TqHXVNag4dyN-gsP7CS-UKlcNg0KxBqRBa96Bnvh0mpjcPemLwdxXHsDovS0A--8hxH0UqLH-mTZjmj27S-oMzTwEYfD4SuCEp-uKpUyKj~XRGQGncoIl~1A3kYsCqY8uFPEIW5P5ke0BIfhczgL-7yKQdkBqvr1VOxzxRtloNGY-tv508xjzBs2KSeERC-KJ9t5Q08qmSUoSAjJV67fuONNzFpYlPkAudvzPrMRcerHaN71BX~LSbUx4oaN~XrJd~Kd-9GBjOUH1E6JxktxImfh-m4-QUbg0HmsmstIZIO7jRT3xEXZAU11gC2k-RdigG1CjXAxOBwbnqs430jUaA__"
-                        alt="Room Image 3"
-                        className="w-full h-20 object-cover "
-                      />
+                    <div className="grid grid-cols-3 gap-[2px] mt-[2px]">
+                      {hotel.imageGallery.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt={`Room ${index + 1}`}
+                          className="w-full h-16 object-cover "
+                        />
+                      ))}
                     </div>
                   </div>
 
-                  <div className="col-span-5 flex flex-col justify-between border-r-2 border-gray-200 px-3 py-2 ">
+                  <div className="mt-4 md:mt-0 md:col-span-5 flex flex-col border-r-2  border-gray-200 px-3 py-2">
                     <div>
-                      <div className="w-full flex justify-between items-start">
+                      <div className="w-full flex flex-col md:flex-row md:justify-between items-start">
                         <h3 className="text-lg font-bold text-black">
                           {hotel.name}
                         </h3>
                         <div>
-                          <div className="flex items-center gap-1">
-                            <img src={birdTraveloka} width={20} alt="" />
-                            <span className="text-sm font-bold text-[#1ba0e2]">
-                              {hotel.rating}
-                            </span>
-                            <span className="text-sm text-gray-600">
-                              ({hotel.reviews})
-                            </span>
+                          <div className="flex flex-row md:flex-col items-center gap-1">
+                            <div className="flex items-center gap-1">
+                              <img src={birdTraveloka} width={20} alt="" />
+                              <span className="text-sm font-bold text-[#1ba0e2]">
+                                {hotel.rating}
+                              </span>
+                              <span className="text-sm text-gray-600">
+                                ({hotel.reviews})
+                              </span>
+                            </div>
+                            <div className="w-auto md:w-full">
+                              <p className="text-xs text-end font-semibold text-gray-600">
+                                {hotel.description}
+                              </p>
+                            </div>
                           </div>
-                          <p className="text-xs text-end font-semibold text-gray-600">
-                            {hotel.description}
-                          </p>
                         </div>
                       </div>
-
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-center space-x-2 mt-2">
-                          <div className="text-sm rounded-md px-2 font-semibold bg-[#ecf8ff] text-[#0264c8]">
-                            {hotel.category}
-                          </div>
-                          <span className="text-yellow-500 text-lg">★★★★★</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center space-x-2 mt-2">
+                        <div className="text-sm rounded-md px-2 font-semibold bg-[#ecf8ff] text-[#0264c8]">
+                          {hotel.category}
                         </div>
-                        <div className="font-semibold flex items-center gap-1">
-                          <FaLocationDot color="gray" size={14} />
-                          <p className="text-sm text-gray-600">
-                            {hotel.location}
-                          </p>
-                        </div>
-                        <ul className="flex flex-wrap gap-2 mt-2 text-xs text-gray-700">
-                          {hotel.facilities.map((facility, index) => (
-                            <li
-                              className="bg-gray-200 px-2 py-1 rounded-lg"
-                              key={index}
-                            >
-                              {facility}
-                            </li>
-                          ))}
-                        </ul>
+                        <span className="text-yellow-500 text-lg">★★★★★</span>
                       </div>
+                      <div className="font-semibold flex items-center gap-1">
+                        <FaLocationDot color="gray" size={14} />
+                        <p className="text-sm text-gray-600">
+                          {hotel.location}
+                        </p>
+                      </div>
+                      <ul className="flex flex-wrap gap-2 mt-2 text-xs text-gray-700">
+                        {hotel.facilities.map((facility, index) => (
+                          <li
+                            className="bg-gray-200 px-2 py-1 rounded-lg"
+                            key={index}
+                          >
+                            {facility}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 
-                  <div className="col-span-2 flex flex-col   justify-end text-right p-4">
-                    <div className="flex flex-col gap-1">
-                      <div className="text-green-600 font-semibold text-xs">
-                        Best Value
-                      </div>
-                      <div className="flex items-center gap-2 justify-end">
-                        <div className="font-bold text-xs text-green-700 ">
-                          {hotel.discount}
-                        </div>
-                        <div className="text-gray-400 font-semibold line-through text-sm">
-                          {hotel.originalPrice}
-                        </div>
-                      </div>
-                      <div className="text-[#ff5e1f] font-bold text-xl">
-                        {hotel.discountedPrice}
-                      </div>
-                      <div className="text-xs text-gray-600 font-semibold">
-                        Diluar Pajak dan Biaya
-                      </div>
+                  <div className="mt-4 md:mt-0 md:col-span-2 flex flex-col justify-end text-right p-4">
+                    <div className="text-green-600 font-semibold text-xs">
+                      Best Value
                     </div>
-                    <div className="mt-4 flex items-center justify-end">
-                      <button
-                        onClick={() => handlePilihKamar(hotel.id)}
-                        className="bg-[#ff5e1f] text-white px-2 font-semibold py-1 rounded-lg cursor-pointer w-full md:w-auto"
-                      >
-                        Pilih Kamar
-                      </button>
+                    <div className="flex items-center gap-2 justify-end">
+                      <span className="font-bold text-xs text-green-700">
+                        {hotel.discount}
+                      </span>
+                      <span className="text-gray-400 font-semibold line-through text-sm">
+                        {hotel.originalPrice}
+                      </span>
                     </div>
+                    <div className="text-[#ff5e1f] font-bold text-xl">
+                      {hotel.discountedPrice}
+                    </div>
+                    <div className="text-xs text-gray-600 font-semibold">
+                      Diluar Pajak dan Biaya
+                    </div>
+                    <button
+                      onClick={() => handlePilihKamar(hotel.id)}
+                      className="bg-[#ff5e1f] text-white px-2 font-semibold py-1 rounded-lg cursor-pointer mt-4 w-full"
+                    >
+                      Pilih Kamar
+                    </button>
                   </div>
                 </div>
               ))}
