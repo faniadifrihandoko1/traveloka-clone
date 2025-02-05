@@ -44,6 +44,7 @@ const SectionCoupon = () => {
 
   const [startIndex, setStartIndex] = useState(0);
   const visibleCoupons = coupons.slice(startIndex, startIndex + 3);
+  const isMobile = window.innerWidth < 768;
 
   const handleNext = () => {
     if (startIndex + 3 < coupons.length) {
@@ -59,20 +60,25 @@ const SectionCoupon = () => {
 
   return (
     <section className="bg-[#c4e8fa] py-6 px-4">
-      <div className="max-w-7xl mx-auto flex flex-col items-center">
+      <div className="max-w-7xl mx-auto ">
         {/* header */}
-        <div className="w-full flex items-center justify-between px-4">
-          <h2 className="text-2xl    font-bold text-gray-800 mb-8 w-full   flex items-center gap-3">
-            <BsFillGiftFill size={24} /> Daftar untuk Menggunakan Kupon
+        <div className="w-full  flex mb-5 md:mb-8 items-center md:justify-between md:px-4">
+          <h2 className="md:text-2xl    font-bold text-gray-800  w-full   flex items-center gap-3">
+            <BsFillGiftFill size={24} className="hidden md:block" /> Daftar
+            untuk Menggunakan Kupon
           </h2>
 
           <MdOutlineNavigateNext size={28} color="black" cursor={"pointer"} />
         </div>
 
         <div className="relative  w-full">
-          <div className="flex items-center  overflow-hidden">
+          <div
+            className={`flex items-center space-x-4 md:space-x-0 ${
+              isMobile ? "overflow-x-auto scrollbar-hide" : "md:overflow-hidden"
+            }`}
+          >
             {/* Tombol Previous */}
-            {startIndex > 0 && (
+            {!isMobile && startIndex > 0 && (
               <button
                 className="bg-white rounded-full drop-shadow-2xl shadow-2xl p-2 absolute left-0 z-10 cursor-pointer"
                 onClick={handlePrev}
@@ -82,9 +88,11 @@ const SectionCoupon = () => {
             )}
 
             <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 transition-transform duration-500 ease-in-out"
+              className="grid grid-flow-col auto-cols-[calc(100%/1.3)]  sm:grid-cols-2 md:grid-cols-3 gap-4 w-full transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(-${startIndex * (100 / 3)}%)`,
+                transform: !isMobile
+                  ? `translateX(-${startIndex * (100 / 3)}%)`
+                  : "none",
               }}
             >
               {visibleCoupons.slice(0, 3).map((coupon) => (
@@ -102,7 +110,7 @@ const SectionCoupon = () => {
                     <div className="flex gap-2">
                       <div
                         // url random foto
-                        className="px-4 py-1 rounded-full bg-[#194590] flex items-center justify-center"
+                        className="px-4 py-2  rounded-full bg-[#194590] flex items-center justify-center"
                       >
                         <FaHotel size={16} />
                       </div>
@@ -128,7 +136,7 @@ const SectionCoupon = () => {
                 </div>
               ))}
             </div>
-            {startIndex + 4 < coupons.length && (
+            {!isMobile && startIndex + 4 < coupons.length && (
               <button
                 className="bg-white rounded-full drop-shadow-2xl shadow-2xl p-2 absolute right-0 z-10 cursor-pointer"
                 onClick={handleNext}

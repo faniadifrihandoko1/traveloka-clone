@@ -1,5 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Promo", icon: "%", href: "#" },
@@ -20,11 +21,13 @@ const subNavItems = [
 ];
 
 const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   return (
     <div
-      className={`fixed top-0 w-full transition-all duration-300 z-50 ${
-        isScrolled ? "bg-white shadow-md text-[#0d1b23]" : "bg-transparent"
-      }`}
+      className={`w-full transition-all duration-300 z-50 
+        ${isHome ? "fixed top-0" : "relative"} 
+        ${isScrolled ? "bg-white shadow-md text-[#0d1b23]" : "bg-transparent"}`}
     >
       <div className="flex items-center justify-center py-2 px-4">
         <div className="w-7xl mx-auto flex justify-between items-center px-4">
@@ -86,7 +89,13 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
 
           <div className="flex items-center gap-2">
             <nav className="hidden md:flex gap-2 text-sm">
-              <div className="flex items-center hover:bg-[#001E45] rounded-md px-2  gap-2 hover:cursor-pointer">
+              <div
+                className={`flex items-center  ${
+                  isScrolled
+                    ? "hover:bg-gray-200"
+                    : "hover:bg-[#001E45] hover:text-white"
+                }  rounded-md px-2  gap-2 hover:cursor-pointer`}
+              >
                 <img
                   src="https://flagcdn.com/w40/id.png"
                   alt="ID Flag"
@@ -102,7 +111,11 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
                 <a
                   key={index}
                   href={item.href}
-                  className="flex items-center gap-1.5 font-semibold px-2 py-2 rounded-md hover:bg-[#001E45] hover:cursor-pointer transition"
+                  className={`flex items-center gap-1.5 font-semibold px-2 py-2 rounded-md ${
+                    isScrolled
+                      ? "hover:bg-gray-200"
+                      : "hover:bg-[#001E45] hover:text-white"
+                  } hover:cursor-pointer transition`}
                 >
                   {item.icon && (
                     <span className="w-5 h-5 flex items-center justify-center border-2 border-[#0885bb] text-[#91e902] text-xs px-1 py-0.5 rounded-full">
@@ -117,11 +130,17 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
             </nav>
 
             <div className="flex gap-1">
-              <button className="border cursor-pointer border-white px-2 py-1 rounded-md flex items-center gap-2 hover:bg-[#001E45] hover:text-white">
+              <button
+                className={`border cursor-pointer  px-2 py-1 rounded-md flex items-center gap-2  ${
+                  isScrolled
+                    ? "hover:bg-gray-200 border-blue-300 hover:text-black"
+                    : "hover:bg-[#001E45] hover:text-white border-white"
+                }  hover:text-white`}
+              >
                 <FaUser size={14} />
                 <span>Log In</span>
               </button>
-              <button className="bg-blue-500 px-4 py-1 cursor-pointer font-bold rounded-md hover:bg-blue-600 transition">
+              <button className="bg-blue-500 px-4 py-1 cursor-pointer font-bold rounded-md hover:bg-blue-600 transition text-white">
                 Daftar
               </button>
             </div>
@@ -140,7 +159,11 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
             <a
               key={index}
               href="#"
-              className="px-4 py-2 rounded-md hover:bg-[#001E45] hover:cursor-pointer transition"
+              className={`px-4 py-2 rounded-md  ${
+                isScrolled
+                  ? "hover:bg-gray-200"
+                  : "hover:bg-[#001E45] hover:text-white"
+              }  hover:cursor-pointer transition`}
             >
               {item}
             </a>

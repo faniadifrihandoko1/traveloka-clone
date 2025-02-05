@@ -19,29 +19,37 @@ const SectionCountry = () => {
   return (
     <section className="bg-white py-6 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <HiBuildingOffice2 color="#375a8e" size={24} />
+        <h2 className="md:text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <HiBuildingOffice2
+            color="#375a8e"
+            className="hidden md:block"
+            size={24}
+          />
           Temukan yang kamu suka di Asia hingga dunia
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {countries.map((country, index) => (
-            <div
-              key={index}
-              className="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer"
-            >
-              <img
-                src={country.image}
-                alt={country.name}
-                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0   flex flex-col justify-start p-6">
-                <h3 className="text-white text-xl font-bold">{country.name}</h3>
-                <p className="text-white text-sm font-semibold">
-                  {country.accommodations} accommodations
-                </p>
+        <div className="overflow-x-auto scrollbar-hide py-2">
+          <div className="flex space-x-4 md:grid md:grid-cols-3 md:gap-4">
+            {countries.map((country, index) => (
+              <div
+                key={index}
+                className="relative min-w-[85%] md:w-full sm:min-w-0 rounded-xl overflow-hidden shadow-lg group cursor-pointer"
+              >
+                <img
+                  src={country.image}
+                  alt={country.name}
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0   flex flex-col justify-start p-6">
+                  <h3 className="text-white text-xl font-bold">
+                    {country.name}
+                  </h3>
+                  <p className="text-white text-sm font-semibold">
+                    {country.accommodations} accommodations
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

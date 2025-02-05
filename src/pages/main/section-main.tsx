@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BiSolidPlaneAlt } from "react-icons/bi";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaBus, FaHotel, FaRegCalendarAlt } from "react-icons/fa";
@@ -6,9 +7,16 @@ import { GrLocation } from "react-icons/gr";
 import { IoSearchSharp } from "react-icons/io5";
 import { MdAttractions, MdOutlineCarRental } from "react-icons/md";
 import { TbBuildingAirport } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 import bgTraveloka from "../../assets/bg-traveloka.jpg";
 
 const SectionMain = () => {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("Depok");
+
+  const handleSearch = () => {
+    navigate(`/hotel?destination=${search}`);
+  };
   return (
     <div className="relative min-h-[80vh]   ">
       <div
@@ -71,7 +79,7 @@ const SectionMain = () => {
           </div>
         </div>
 
-        <div className="px-4 w-7xl">
+        <div className="px-4 md:w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mb-2">
             <div className="justify-self-start  ">Kota Tujuan Nama Hotel</div>
             <div className="justify-self-start  -ml-6">
@@ -84,7 +92,8 @@ const SectionMain = () => {
               <GrLocation color="#0194f3" size={24} cursor={"pointer"} />
               <input
                 type="text"
-                value={"Jakarta"}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Kota, tujuan, atau nama hotel"
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
@@ -95,7 +104,7 @@ const SectionMain = () => {
               <FaRegCalendarAlt color="#0194f3" size={24} cursor={"pointer"} />
               <input
                 type="text"
-                value={"05 Feb 2025 - 06 Feb 2025"}
+                value={"25 Jun 2023 - 30 Jun 2023"}
                 placeholder=""
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
@@ -111,7 +120,10 @@ const SectionMain = () => {
               />
             </div>
 
-            <div className="bg-orange-500 text-white px-4 py-2 cursor-pointer rounded-r-3xl hover:bg-orange-600  flex items-center">
+            <div
+              onClick={handleSearch}
+              className="bg-orange-500 text-white px-4 py-2 cursor-pointer rounded-r-3xl hover:bg-orange-600  flex items-center"
+            >
               <IoSearchSharp size={26} />
             </div>
           </div>
