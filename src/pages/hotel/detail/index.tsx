@@ -3,15 +3,19 @@ import { FaAward, FaRegCalendarAlt } from "react-icons/fa";
 import { FaBuildingUser } from "react-icons/fa6";
 import { GrFormNext, GrLocation } from "react-icons/gr";
 import { IoLocationSharp, IoSearchSharp } from "react-icons/io5";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import birdLogo from "../../../assets/logo-bird.png";
 import hotels from "../../../utils/data";
 
 const HotelDetail = () => {
   const { id } = useParams();
   const [isFixed, setIsFixed] = useState(false);
+  const navigate = useNavigate();
 
-  console.log(id);
+  const handleBooking = () => {
+    navigate(`/accommodation/booking/${findData?.id}`);
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const findData = hotels.find((item: any) => item.id.toString() === id);
   console.log(findData);
@@ -375,7 +379,10 @@ const HotelDetail = () => {
                               </p>
                             </td>
                             <td className="p-2 sm:p-3 text-center">
-                              <button className="bg-blue-600 cursor-pointer text-white font-semibold px-2 py-1 rounded-lg hover:bg-blue-700 text-xs sm:text-sm">
+                              <button
+                                onClick={() => handleBooking()}
+                                className="bg-blue-600 cursor-pointer text-white font-semibold px-2 py-1 rounded-lg hover:bg-blue-700 text-xs sm:text-sm"
+                              >
                                 Pilih
                               </button>
                               <p className="text-red-600 font-medium text-xs sm:text-sm mt-2">
