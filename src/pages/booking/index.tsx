@@ -5,15 +5,17 @@ import { FaBuildingUser } from "react-icons/fa6";
 import { ImSpoonKnife } from "react-icons/im";
 import { IoBed } from "react-icons/io5";
 import { MdReceiptLong } from "react-icons/md";
+import { RxLapTimer } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 import bird from "../../assets/logo-bird.png";
 import logo from "../../assets/logo-travloka-black.svg";
-import { RxLapTimer } from "react-icons/rx";
 const BookingPage = () => {
+  const navigate = useNavigate();
   const images = [
     "https://media-hosting.imagekit.io//a7be024de06049f4/front-htl.jpeg?Expires=1833385353&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=CFTIrKO9kf7uliZZWYU6iv6zuJXEv5peURPbKyNMnXsgr0Cqq6AF9WQe9PLXqD-Fld5l~MIEP48IDb8Hb09WDtYH9VQ11h0oRfp64D4JU8ZEunWJCy34RaxfAITslVHZz1gsm2UcpEyPCRFO6DjgIy-4pIiXZ1dIPGGYGR8WKsM1Yn~ik1e-50voBaZZFrve8cSMTsAAoB4OLn3Nt-ClZhT1b0KPP3VNFrwOaxVLmA0F4wzL2tK8fWTPKQKuyxvR750CYdXJRfwppqsL7a2g4SrpAuCO~88Fbmd3PO1lQjpwgQLOiK0B7PqK1I5GDK5iSLLiATjKlmsuTf5rJ8B8ag__",
     "https://media-hosting.imagekit.io//fae3876846ae4861/kmr-tdr.jpeg?Expires=1833385353&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cfLe-RldR4HMaCvIKVD9~T6fNnzvO38OPOVFJEZUxkvaL4N329-ntL-m5cI4jeh7gWYuFl15P78540Unlgl41qPy-SZq5vj4aIjY6dRDvo5zKQmtKGkrmrelMYY1-cANqCBx8EVUR86u54WhTPEXo0oNyKgxupMAp92Ck5mXxeDZrlzjvxHJi-ljOa0p-H1qmytWckJio7UriP95zrybBazTnUGaB6DG-tzR4PmvzllCeHVLeejp8aHoU4AX-n9VDIzEzcvjnsF3G~BzCzbFts~cT3KEX6gvtPhpI51d1qSi8BlOJrjs-Wa2iyCfgCFluWg0ABXMWGIAKyrS9YT3pw__",
     "https://media-hosting.imagekit.io//1bf59e71c0b34647/bathub.jpeg?Expires=1833385353&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=vptDOF9LxczXlClKnbJqfMFxSMv60KUplcoapkvbPrPhLufI7dBvPSr9x4-ykn6LLJ0ocOIQe9odwfbZXMgfSmPNOsLV82tJLKRPx0EBodXPzUbjmmi9Zn6ombvgi3VGFXf875OF0UGTPW2ThGU8zky82CPX0LHyuX3t4cZc242UQtoGhtV5~hDp7xFUaJYkV4a9~VmUe7IRCSZagGRULf~6-VFLyhHxBKeChg2pi1u1muTlDYhY80S2TwkDmGP0Exrw3bsltg~~AAS-cc4uKKtnhijl10Z1~YgyaLEqj1MhtEVO2CTyYmoHXpWC6nwEqXg1NljEPhfSDpbNLuRXRQ__",
-  ]
+  ];
   const [currentImage, setCurrentImage] = useState(0);
 
   const nextImage = () => {
@@ -252,7 +254,10 @@ const BookingPage = () => {
                   </div>
 
                   {/* Button */}
-                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-medium">
+                  <button
+                    onClick={() => navigate("/payment")}
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-medium cursor-pointer"
+                  >
                     Lanjut ke Pembayaran
                   </button>
 
