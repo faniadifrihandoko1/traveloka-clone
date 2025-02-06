@@ -27,7 +27,7 @@ const BookingPage = () => {
   };
   return (
     <>
-      <div className="container bg-white px-4 sm:px-6 lg:px-8">
+      <div className="bg-white px-4 sm:px-6 lg:px-8">
         <div className="w-full mx-auto items-center max-w-7xl">
           <div className="flex flex-col sm:flex-row items-center justify-between py-4 border-b">
             {/* Logo */}
@@ -63,7 +63,7 @@ const BookingPage = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto p-4 bg-gray-50">
+      <div className="mx-auto p-4 bg-gray-50">
         <div className=" max-w-6xl mx-auto">
           <div className="flex flex-col gap-3 mb-3">
             <h1 className="text-2xl font-bold text-black">
@@ -108,7 +108,7 @@ const BookingPage = () => {
                       <input
                         type="text"
                         placeholder="Contoh: John Maeda"
-                        className="w-full mt-1 p-2 border-1 border-gray-300 rounded-md text-sm"
+                        className="w-full mt-1 p-2 border-1 border-gray-300 rounded-md text-sm text-gray-500"
                       />
                       <p className="text-xs text-gray-500 mt-1">
                         Gunakan huruf alfabet (A-Z), tanpa tanda baca, dan
@@ -126,7 +126,7 @@ const BookingPage = () => {
                       <input
                         type="email"
                         placeholder="Contoh: email@example.com"
-                        className="w-full mt-1 p-2 border-1 border-gray-300 rounded-md text-sm"
+                        className="w-full mt-1 p-2 border-1 border-gray-300 rounded-md text-sm text-gray-500"
                       />
                       <p className="text-xs text-gray-500 mt-1">
                         E-voucher akan dikirim ke email ini.
@@ -143,7 +143,7 @@ const BookingPage = () => {
                         <input
                           type="text"
                           placeholder="812345678"
-                          className="w-full mt-[2px] p-2 border-1 border-gray-300 rounded-md text-sm"
+                          className="w-full mt-[2px] p-2 border-1 border-gray-300 rounded-md text-sm text-gray-500"
                         />
                       </div>
                       <p className="text-xs text-gray-500 mt-1">

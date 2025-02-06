@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import Navbar from "../components/navbar";
 
 const Layout = () => {
   const location = useLocation();
@@ -25,9 +25,15 @@ const Layout = () => {
 
   return (
     <>
-      <Navbar isScrolled={isScrolled} />
-      <Outlet />
-      <Footer />
+      <header>
+        <Navbar isScrolled={isScrolled} />
+      </header>
+      <main>
+        <Outlet />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

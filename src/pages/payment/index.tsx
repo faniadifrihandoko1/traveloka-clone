@@ -5,36 +5,31 @@ import { ImSpoonKnife } from "react-icons/im";
 import { IoBed } from "react-icons/io5";
 import headerCard from "../../assets/header-card.svg";
 import atm from "../../assets/image/content/payment/aatm-bersama.png";
+import alfa from "../../assets/image/content/payment/alfa.png";
 import alto from "../../assets/image/content/payment/alto.png";
 import bca from "../../assets/image/content/payment/bca.png";
 import bni from "../../assets/image/content/payment/bni.png";
 import bri from "../../assets/image/content/payment/bri.png";
 import dompet from "../../assets/image/content/payment/dompet.png";
+import indomaret from "../../assets/image/content/payment/indomaret.png";
 import jcb from "../../assets/image/content/payment/jcb.png";
 import mandiri from "../../assets/image/content/payment/mandiri.png";
 import mc from "../../assets/image/content/payment/mc.png";
+import midi from "../../assets/image/content/payment/midi.png";
 import prima from "../../assets/image/content/payment/prima.png";
+import paylater from "../../assets/image/content/payment/tpaylate.png";
 import visa from "../../assets/image/content/payment/visa.png";
 import logo from "../../assets/logo-travloka-black.svg";
-import midi from "../../assets/image/content/payment/midi.png";
-import alfa from "../../assets/image/content/payment/alfa.png";
-import indomaret from "../../assets/image/content/payment/indomaret.png";
-import paylater from "../../assets/image/content/payment/tpaylate.png";
-
-
-
-
-
 
 const PaymentPages = () => {
   return (
     <>
-      <div className="container bg-white px-4 md:pb-7">
+      <div className=" bg-white px-4 md:pb-7">
         <div className="w-full mx-auto items-center max-w-6xl py-4">
           <img src={logo} alt="logo" className="h-9 mb-4 sm:mb-0" />
         </div>
       </div>
-      <div className="container mx-auto p-4  bg-white">
+      <div className="mx-auto p-4  bg-white">
         <div className=" max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-10 gap-8">
             {/* Section Kiri */}
