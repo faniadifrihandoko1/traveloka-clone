@@ -35,7 +35,6 @@ const PaymentPages = () => {
             {/* Section Kiri */}
             <div className="md:col-span-7 space-y-6 h-auto min-h-full w-full order-2 md:order-1">
               <div className="bg-white w-full max-w-3xl shadow-lg rounded-lg">
-                {/* Header */}
                 <div className="bg-[#0071ce] mb-4 flex items-center justify-center rounded-t-lg p-4">
                   <div className="text-white font-semibold">
                     Tenang, harganya tidak akan berubah. Yuk selesaikan
@@ -44,7 +43,6 @@ const PaymentPages = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  {/* Payment Methods */}
                   <div>
                     <div className="flex justify-between items-center">
                       <h2 className="text-lg md:text-xl font-bold mb-4 text-black">
@@ -57,7 +55,6 @@ const PaymentPages = () => {
                       </div>
                     </div>
 
-                    {/* Installment */}
                     <div className="mb-4 flex justify-between items-end border-b-[1px] pb-4 border-gray-300 ">
                       <label className="flex items-end space-x-3">
                         <input
@@ -79,7 +76,6 @@ const PaymentPages = () => {
                       </div>
                     </div>
 
-                    {/* Virtual Account */}
                     <div className="mb-4 flex justify-between items-center border-b-[1px] pb-4 border-gray-300">
                       <label className="flex items-end space-x-3">
                         <input
@@ -103,7 +99,6 @@ const PaymentPages = () => {
                       </div>
                     </div>
 
-                    {/* Bank Transfer */}
                     <div className="mb-4 flex justify-between items-center border-b-[1px] pb-4 border-gray-300">
                       <label className="flex items-center space-x-3">
                         <input
@@ -124,7 +119,6 @@ const PaymentPages = () => {
                       </div>
                     </div>
 
-                    {/* Credit/Debit Card */}
                     <div className="mb-4 flex items-center justify-between border-b-[1px] pb-4 border-gray-300">
                       <label className="flex items-center space-x-3">
                         <input
@@ -143,7 +137,6 @@ const PaymentPages = () => {
                       </div>
                     </div>
 
-                    {/* TPayLater */}
                     <div className="mb-4 flex justify-between items-center border-b-[1px] pb-4 border-gray-300">
                       <label className="flex items-start space-x-3">
                         <input
@@ -165,7 +158,6 @@ const PaymentPages = () => {
                       </div>
                     </div>
 
-                    {/* Minimarket */}
                     <div className="mb-4 flex items-center justify-between border-b-[1px] pb-4 border-gray-300">
                       <label className="flex items-center space-x-3">
                         <input
@@ -185,7 +177,6 @@ const PaymentPages = () => {
                     </div>
                   </div>
 
-                  {/* Coupon Section */}
                   <div className="mb-4">
                     <div className="flex justify-between items-center">
                       <div className="font-bold text-black">Pakai Kupon</div>
@@ -196,7 +187,6 @@ const PaymentPages = () => {
                     </div>
                   </div>
 
-                  {/* Total Price */}
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-lg font-semibold text-black">
@@ -221,13 +211,11 @@ const PaymentPages = () => {
                     </div>
                   </div>
 
-                  {/* Loyalty Points */}
                 </div>
               </div>
             </div>
             {/* Section Kanan */}
             <div className="bg-white md:col-span-3 rounded-lg shadow-md space-y-2 w-full mx-auto md:self-start order-1 md:order-2">
-              {/* Hotel Info */}
               <div className="relative">
                 <img
                   src={headerCard}
@@ -279,9 +267,7 @@ const PaymentPages = () => {
                 </div>
               </div>
 
-              {/* Detail Pemesanan */}
 
-              {/* Detail Kamar */}
               <div className="space-y-2    px-4">
                 <h3 className="font-bold text-black">
                   (1x) Deluxe King With Balcony
@@ -343,7 +329,6 @@ const PaymentPages = () => {
                 <div className="w-full h-[1px] bg-gray-300 rounded-full my-3"></div>
               </div>
 
-              {/* Total Harga */}
               <div className="pb-4 px-4 ">
                 <div className="flex gap-2 items-center">
                   <div className="px-2 py-2 bg-gray-200 rounded-full ">

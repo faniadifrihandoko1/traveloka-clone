@@ -12,7 +12,6 @@ import SectionWhy from "./section-why";
 const MainPage = () => {
   return (
     <>
-      {/* <Navbar isScrolled={isScrolled} /> */}
       <SectionMain />
       <SectionCoupon />
       <SectionPlan />
@@ -23,7 +22,6 @@ const MainPage = () => {
       <SectionNews />
       <SectionWhy />
       <SectionNewsleater />
-      {/* <Footer /> */}
     </>
   );
 };

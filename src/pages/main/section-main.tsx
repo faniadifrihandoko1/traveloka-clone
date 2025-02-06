@@ -174,7 +174,6 @@ const SectionMain = () => {
             <h2 className="font-semibold text-white italic">Trusted By</h2>
 
             {visibleItems.map((item) => (
-              // <div className="px-2  p-1  hover:bg-white text-white">
               <div
                 key={item.name}
                 className={`px-2 p-1 hover:bg-white text-white transition-all ${

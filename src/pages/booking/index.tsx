@@ -100,7 +100,6 @@ const BookingPage = () => {
                 </p>
                 <form className="space-y-4">
                   <div className="grid grid-cols-1  gap-4">
-                    {/* Nama Lengkap */}
                     <div className="w-full bg-">
                       <label className="text-sm font-medium text-gray-500">
                         Nama Lengkap (sesuai KTP/Paspor/SIM)
@@ -117,7 +116,6 @@ const BookingPage = () => {
                     </div>
                   </div>
 
-                  {/* Email & Nomor Handphone */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-gray-500">
@@ -153,7 +151,6 @@ const BookingPage = () => {
                     </div>
                   </div>
 
-                  {/* Opsi Pemesan */}
                   <div className="flex items-center gap-4">
                     <label className="flex items-center text-black text-base">
                       <input
@@ -215,7 +212,6 @@ const BookingPage = () => {
                     murah
                   </p>
 
-                  {/* Harga Kamar */}
                   <div className="flex justify-between text-sm">
                     <div>
                       <p className="font-medium text-gray-700">Harga Kamar</p>
@@ -226,7 +222,6 @@ const BookingPage = () => {
                     <p className="font-medium text-gray-700">Rp 50.677.475</p>
                   </div>
 
-                  {/* Pajak dan Biaya */}
                   <div className="flex justify-between text-sm border-b pb-4">
                     <div className="flex items-center gap-1">
                       <p className="font-medium text-gray-700">
@@ -239,13 +234,11 @@ const BookingPage = () => {
 
                   <div className="w-full h-[1px] bg-gray-300 rounded-full my-3"></div>
 
-                  {/* Harga Total */}
                   <div className="flex justify-between text-lg font-semibold text-orange-600">
                     <p>Harga Total</p>
                     <p>Rp 61.877.200</p>
                   </div>
 
-                  {/* Notifikasi */}
                   <div className=" text-blue-600 text-sm p-3 font-bold rounded-lg flex  w-full justify-center items-center gap-2">
                     <span className="text-blue-500">
                       <RxLapTimer size={20} className="rotate-12" />
@@ -253,7 +246,6 @@ const BookingPage = () => {
                     Kamu tidak perlu bayar apa pun sekarang!
                   </div>
 
-                  {/* Button */}
                   <button
                     onClick={() => navigate("/payment")}
                     className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-medium cursor-pointer"
@@ -261,7 +253,6 @@ const BookingPage = () => {
                     Lanjut ke Pembayaran
                   </button>
 
-                  {/* Informasi Tambahan */}
                   <p className="text-xs text-gray-500 text-center">
                     Dengan lanjut ke pembayaran, kamu telah menyetujui
                     <span className="text-blue-500"> Syarat dan Ketentuan</span>
@@ -274,14 +265,11 @@ const BookingPage = () => {
                     dari Traveloka.
                   </p>
                 </div>
-
-                {/* Bonus XP & Poin */}
               </div>
             </div>
 
             {/* Section Kanan */}
             <div className="bg-white  md:col-span-3 rounded-lg shadow-md space-y-2 w-full   mx-auto md:self-start order-1 md:order-2">
-              {/* Hotel Info */}
               <div className="px-4 py-2">
                 <div className="flex items-center justify-between mt-1">
                   <h2 className=" font-bold text-black">
@@ -306,8 +294,6 @@ const BookingPage = () => {
                     Mendapatkan rating tinggi di kate
                   </p>
                 </div>
-
-                {/* Image Carousel */}
               </div>
               <div className="relative mt-4">
                 <img
@@ -329,9 +315,7 @@ const BookingPage = () => {
                 </button>
               </div>
 
-              {/* Detail Pemesanan */}
               <div className="flex items-center justify-center gap-1 p-4">
-                {/* Check-In */}
                 <div className="border border-gray-300 rounded-lg p-3 w-40 text-center">
                   <p className="text-xs text-gray-600">Check-In</p>
                   <p className="text-xs font-bold text-gray-900">
@@ -340,7 +324,6 @@ const BookingPage = () => {
                   <p className="text-xs text-gray-600">Dari 15:00</p>
                 </div>
 
-                {/* Durasi Menginap */}
                 <div className="flex flex-col items-center">
                   <span className="text-xs text-gray-700 font-medium">
                     23 malam
@@ -348,7 +331,6 @@ const BookingPage = () => {
                   <div className="w-16 h-[1px] bg-gray-300 rounded-full mt-1"></div>
                 </div>
 
-                {/* Check-Out */}
                 <div className="border border-gray-300 rounded-lg p-3 w-40 text-center">
                   <p className="text-xs text-gray-600">Check-Out</p>
                   <p className="text-xs font-bold text-gray-900">
@@ -358,13 +340,11 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              {/* Detail Kamar */}
               <div className="space-y-2    px-4">
                 <h3 className="font-bold text-black">
                   (1x) Deluxe King With Balcony
                 </h3>
                 <div className="flex items-center space-x-2">
-                  {/* <Users className="w-4 h-4 text-gray-600" /> */}
                   <FaBuildingUser className="w-4 h-4 text-gray-600" />
                   <span className="text-sm text-gray-600 font-medium">
                     2 Tamu
@@ -383,7 +363,6 @@ const BookingPage = () => {
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  {/* <Wifi className="w-4 h-4 text-gray-600" /> */}
                   <FaWifi className="w-4 h-4 text-gray-600" />
                   <span className="text-sm text-gray-600 font-medium">
                     Wi-Fi Gratis
@@ -393,7 +372,6 @@ const BookingPage = () => {
 
               <div className="w-full h-[1px] bg-gray-300 rounded-full my-3"></div>
 
-              {/* Total Harga */}
               <div className="pb-4 px-4 ">
                 <div className="flex justify-between">
                   <div>

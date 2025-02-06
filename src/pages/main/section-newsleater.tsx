@@ -10,7 +10,6 @@ const SectionNewsleater = () => {
       style={{ backgroundImage: `url(${bgNewsleatter})` }}
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center text-white ">
-        {/* Informasi dan Form */}
         <div className="w-[45%] ">
           <h2 className="text-3xl  font-bold mb-4 text-left">
             Dapatkan info terbaru seputar tips perjalanan, rekomendasi, serta
@@ -32,7 +31,6 @@ const SectionNewsleater = () => {
           </p>
         </div>
 
-        {/* QR Code & Store Buttons */}
         <div className="flex w-[45%] items-center    gap-4 mt-6">
           <img src={barcode} alt="QR Code" className="w-18" />
           <div className="flex gap-2">
@@ -40,7 +38,6 @@ const SectionNewsleater = () => {
           </div>
         </div>
 
-        {/* Gambar Aplikasi di Bawah */}
         <div className="absolute left-30 md:bottom-0 w-64">
           <img src={aplikasi} alt="Traveloka App" className="w-full" />
         </div>

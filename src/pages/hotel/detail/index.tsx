@@ -103,7 +103,6 @@ const HotelDetail = () => {
       <div className={`bg-gray-100 py-6 px-4 ${isFixed ? "md:pt-40" : ""}`}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 px-4">
-            {/* Large Main Image - 40% Width */}
             <div className="md:col-span-5 h-[400px] md:h-[400px]">
               <img
                 src="https://media-hosting.imagekit.io//692087d0c0164331/20053243-cab50857832026c679f9ad91ce9e669d.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=p3TFjIuGDCJHmNYBeBCpiDnzdYOtnT5DZvKO1dLvtDv2ZSRrPB2awNXGMyGlegQlIW1CActq0fKhEkcCKeE22qJhNxl79G5Cszixj6cjjBd267YwRlJansgtEsIZN2348Gv1Au3M1PqNmm7VPxxbhcK1d~G2phxIVXA2ffRc4k7Gw~WhZlqX6OYHTrvqQGg0ELzuAAoRj9QmkcUuZziWuJBUS-W8LwhOJe4FjRTqX6YVd~WOAUGXD4jjgxssW97onSBN2BFgx5uArTzOEZgq8-ZkOIEJqV6he~coJRv~JlJanTExY7YzlENYRV6vZ6UeWddzWmTvFknY-yjBRL~F6w__"
@@ -112,9 +111,7 @@ const HotelDetail = () => {
               />
             </div>
 
-            {/* Small Images Grid */}
             <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
-              {/* Column 1 */}
               <div className="grid grid-rows-2 gap-2">
                 <img
                   src="https://media-hosting.imagekit.io//57e46eb9bd0a4d00/1525328182573-3236x2160-FIT_AND_TRIM-55c23eedb2d7234a9d57829a4d89c211.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cjsH34kD6WTkGCMDxWT7ajUmZuALdW3GH5X2HxRzejBny9wUO-55u4QmncWLdQs4xztdUgUTp2taN6sAWYu3sAktLxVdIKPGJf3zacGoj4bgEOkt7FFSlnN56-KYfQsJBwZkI18jNYMcAttcMhT~-R~txmODn9zELOehTp4LgVzTW3tNey0WDuC~1u7s8tinZR5bigxJMPOjBMaBXpze97GfT1lQVCUFeDICziNdWv0GJg7GgFeS8UaPkpIWhzUjeEjNmLR~Uae6SRbfhxEKMmqV8vMTE4qPFHQKbtw8pzWBCKhVWPBWNxwL2L0nYhRQ-1fYetrSt~wu2Pk7GcBF8Q__"
@@ -128,7 +125,6 @@ const HotelDetail = () => {
                 />
               </div>
 
-              {/* Column 2 */}
               <div className="grid grid-rows-2 gap-2">
                 <img
                   src="https://media-hosting.imagekit.io//57e46eb9bd0a4d00/1525328182573-3236x2160-FIT_AND_TRIM-55c23eedb2d7234a9d57829a4d89c211.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cjsH34kD6WTkGCMDxWT7ajUmZuALdW3GH5X2HxRzejBny9wUO-55u4QmncWLdQs4xztdUgUTp2taN6sAWYu3sAktLxVdIKPGJf3zacGoj4bgEOkt7FFSlnN56-KYfQsJBwZkI18jNYMcAttcMhT~-R~txmODn9zELOehTp4LgVzTW3tNey0WDuC~1u7s8tinZR5bigxJMPOjBMaBXpze97GfT1lQVCUFeDICziNdWv0GJg7GgFeS8UaPkpIWhzUjeEjNmLR~Uae6SRbfhxEKMmqV8vMTE4qPFHQKbtw8pzWBCKhVWPBWNxwL2L0nYhRQ-1fYetrSt~wu2Pk7GcBF8Q__"
@@ -142,7 +138,6 @@ const HotelDetail = () => {
                 />
               </div>
 
-              {/* Column 3 */}
               <div className="grid grid-rows-2 gap-2">
                 <img
                   src="https://media-hosting.imagekit.io//57e46eb9bd0a4d00/1525328182573-3236x2160-FIT_AND_TRIM-55c23eedb2d7234a9d57829a4d89c211.jpeg?Expires=1833334602&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cjsH34kD6WTkGCMDxWT7ajUmZuALdW3GH5X2HxRzejBny9wUO-55u4QmncWLdQs4xztdUgUTp2taN6sAWYu3sAktLxVdIKPGJf3zacGoj4bgEOkt7FFSlnN56-KYfQsJBwZkI18jNYMcAttcMhT~-R~txmODn9zELOehTp4LgVzTW3tNey0WDuC~1u7s8tinZR5bigxJMPOjBMaBXpze97GfT1lQVCUFeDICziNdWv0GJg7GgFeS8UaPkpIWhzUjeEjNmLR~Uae6SRbfhxEKMmqV8vMTE4qPFHQKbtw8pzWBCKhVWPBWNxwL2L0nYhRQ-1fYetrSt~wu2Pk7GcBF8Q__"
@@ -193,7 +188,6 @@ const HotelDetail = () => {
             </div>
             <div className="container mx-auto mt-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Review Section */}
                 <div className="bg-white p-4 shadow-md rounded-lg md:col-span-1">
                   <div className="flex items-center space-x-2">
                     <div className="text-xl font-bold border-blue-300 border-2 rounded-md p-2  text-blue-500">
@@ -234,10 +228,8 @@ const HotelDetail = () => {
                   </div>
                 </div>
 
-                {/* Right Column: Accommodation & Facilities */}
                 <div className="md:col-span-2 space-y-4">
                   <div className="grid grid-cols-2 gap-4">
-                    {/* Accommodation Section */}
                     <div className="bg-white p-4 shadow-md rounded-lg">
                       <div className="flex items-center justify-between space-x-2">
                         <h2 className="font-bold text-black">Area Akomodasi</h2>
@@ -277,7 +269,6 @@ const HotelDetail = () => {
                       </div>
                     </div>
 
-                    {/* Facilities Section */}
                     <div className="bg-white p-4 shadow-md rounded-lg">
                       <div className="flex items-center justify-between space-x-2">
                         <h2 className="font-bold text-black">
@@ -302,7 +293,6 @@ const HotelDetail = () => {
                     </div>
                   </div>
 
-                  {/* Hotel Description Section */}
                   <div className="bg-white p-4 shadow-md rounded-lg">
                     <p className="text-sm text-gray-600">
                       The Gaia Hotel Bandung adalah hotel di lokasi yang baik,
@@ -399,7 +389,7 @@ const HotelDetail = () => {
                   <h3 className="text-md font-semibold text-gray-800">
                     Fasilitas
                   </h3>
-                  <div className="w-full w-1/2 md:w-1/3">
+                  <div className="w-full  md:w-1/3">
                     <ul className="text-sm text-gray-600 mt-2 grid grid-cols-2 sm:grid-cols-2">
                       <li>✅ Shower</li>
                       <li>✅ Balkon / teras</li>

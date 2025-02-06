@@ -77,7 +77,6 @@ const SectionCoupon = () => {
               isMobile ? "overflow-x-auto scrollbar-hide" : "md:overflow-hidden"
             }`}
           >
-            {/* Tombol Previous */}
             {!isMobile && startIndex > 0 && (
               <button
                 className="bg-white rounded-full drop-shadow-2xl shadow-2xl p-2 absolute left-0 z-10 cursor-pointer"
@@ -109,7 +108,6 @@ const SectionCoupon = () => {
                   <div className="flex flex-col gap-3">
                     <div className="flex gap-2">
                       <div
-                        // url random foto
                         className="px-4 py-2  rounded-full bg-[#194590] flex items-center justify-center"
                       >
                         <FaHotel size={16} />
@@ -122,7 +120,6 @@ const SectionCoupon = () => {
                       </div>
                     </div>
 
-                    {/* Kode Kupon */}
                     <div className="flex items-center justify-between   rounded-lg mt-3">
                       <span className="text-sm flex items-center gap-2 font-medium text-gray-600 bg-gray-100 p-2 w-[75%] rounded-lg">
                         <FaRegCopy />
