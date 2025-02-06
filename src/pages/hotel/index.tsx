@@ -25,6 +25,13 @@ const HotelPages = () => {
   const destination = searchParams.get("destination");
   const navigate = useNavigate();
 
+  const [search, setSearch] = useState(destination || "");
+  const [searchQuery, setSearchQuery] = useState(destination || "");
+
+  const handleSearch = () => {
+    setSearchQuery(search); // Update searchQuery dengan nilai dari input
+  };
+
   const handlePilihKamar = (id: number) => {
     navigate(`/hotel/detail/${id}`);
   };
@@ -49,8 +56,12 @@ const HotelPages = () => {
   };
 
   const filteredHotels = hotels.filter((hotel) =>
-    hotel.name.toLowerCase().includes(destination?.toLowerCase() ?? "")
+    hotel.name.toLowerCase().includes(searchQuery?.toLowerCase() ?? "")
   );
+
+  const formatPrice = (price: number) => {
+    return `Rp ${price.toLocaleString("id-ID")}`;
+  };
 
   const sortedHotels = [...filteredHotels].sort((a, b) => {
     if (selectedSort === "Harga Terendah") {
@@ -92,7 +103,8 @@ const HotelPages = () => {
               <GrLocation color="#0194f3" size={24} cursor="pointer" />
               <input
                 type="text"
-                value={destination || "Kota, tujuan, atau nama hotel"}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Kota, tujuan, atau nama hotel"
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
@@ -113,210 +125,232 @@ const HotelPages = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-500"
               />
             </div>
-            <div className="bg-[#0194f3] text-white px-4 py-2 cursor-pointer rounded-xl font-bold flex items-center justify-center md:rounded-r-xl w-full md:w-auto">
+            <button
+              onClick={handleSearch}
+              className="bg-[#0194f3]  text-white px-4 py-2 cursor-pointer rounded-xl font-bold flex items-center justify-center md:rounded-r-xl w-full md:w-auto"
+            >
               <IoSearchSharp size={26} />
               <span className="ml-2">Cari Hotel</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
 
       <div className={`bg-gray-100 py-6 px-4 ${isFixed ? "md:pt-40" : ""}`}>
-        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
-          <div className="col-span-3 hidden md:block   p-4">
-            <div className="bg-[#ecf8ff] p-6 rounded-lg  mb-4 w-full flex flex-col items-center justify-center ">
-              <FaMapLocationDot color="#3180d5" size={34} />
-              <div className="bg-[#3180d5] px-2 py-1 rounded-2xl font-bold mt-2">
-                <p>Eksplor Di Peta</p>
+        {/* buatlah kondisi jika datanya tidak ada maka tampilin pesan tidak ditemukan */}
+        {sortedHotels.length > 0 ? (
+          <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
+            <div className="col-span-3 hidden md:block   p-4">
+              <div className="bg-[#ecf8ff] p-6 rounded-lg  mb-4 w-full flex flex-col items-center justify-center ">
+                <FaMapLocationDot color="#3180d5" size={34} />
+                <div className="bg-[#3180d5] px-2 py-1 rounded-2xl font-bold mt-2">
+                  <p>Eksplor Di Peta</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-span-12   md:col-span-9 ">
-            <div className="md:py-4 w-full mx-auto rounded-lg">
-              <div className="flex flex-col md:flex-row md:justify-between w-full items-start md:items-center gap-4">
-                <div className="text-black w-full md:w-auto text-left md:text-left">
-                  <h1 className="font-bold">{destination}</h1>
-                  <p className="text-sm text-gray-500">3 Properti Ditemukan</p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-                  {/* Sorting Dropdown */}
-                  <div className="relative flex items-center gap-2 text-black w-full sm:w-auto">
-                    <p className="text-xs font-semibold">
-                      Urutkan Berdasarkan:
+            <div className="col-span-12   md:col-span-9 ">
+              <div className="md:py-4 w-full mx-auto rounded-lg">
+                <div className="flex flex-col md:flex-row md:justify-between w-full items-start md:items-center gap-4">
+                  <div className="text-black w-full md:w-auto text-left md:text-left">
+                    <h1 className="font-bold">{destination}</h1>
+                    <p className="text-sm text-gray-500">
+                      {filteredHotels.length} Properti Ditemukan
                     </p>
-                    <button
-                      className="flex items-center justify-between w-full sm:w-auto gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
-                      onClick={handleDropdownToggle}
-                    >
-                      {selectedSort} <BiChevronDown size={16} />
-                    </button>
-                    {isDropdownOpen && (
-                      <div className="absolute text-sm font-semibold top-10 right-0 mt-2 w-auto md:w-full sm:w-64 bg-white border-gray-300 rounded shadow-lg z-10">
-                        <button
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleSelectSort("Harga Terendah")}
-                        >
-                          Harga Terendah
-                        </button>
-                        <button
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleSelectSort("Harga Tertinggi")}
-                        >
-                          Harga Tertinggi
-                        </button>
-                        <button
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleSelectSort("Rating Tertinggi")}
-                        >
-                          Rating Tertinggi
-                        </button>
-                      </div>
-                    )}
                   </div>
 
-                  {/* Price Display Dropdown */}
-                  <div className="relative flex items-center gap-2 text-black w-full sm:w-auto">
-                    <p className="text-xs font-semibold">Tampilan Harga:</p>
-                    <button
-                      className="flex items-center justify-between w-full sm:w-auto gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
-                      onClick={handlePriceDropdownToggle}
-                    >
-                      {selectedPrice} <BiChevronDown size={16} />
-                    </button>
-                    {isPriceDropdownOpen && (
-                      <div className="absolute mt-2 text-sm font-semibold top-10  right-0  w-auto md:w-full sm:w-48 bg-white border-gray-300 rounded shadow-lg z-10">
-                        <button
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleSelectPrice("Include Tax")}
-                        >
-                          Include Tax
-                        </button>
-                        <button
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleSelectPrice("Exclude Tax")}
-                        >
-                          Exclude Tax
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+                    {/* Sorting Dropdown */}
+                    <div className="relative flex items-center gap-2 text-black w-full sm:w-auto">
+                      <p className="text-xs font-semibold">
+                        Urutkan Berdasarkan:
+                      </p>
+                      <button
+                        className="flex items-center justify-between w-full sm:w-auto gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
+                        onClick={handleDropdownToggle}
+                      >
+                        {selectedSort} <BiChevronDown size={16} />
+                      </button>
+                      {isDropdownOpen && (
+                        <div className="absolute text-sm font-semibold top-10 right-0 mt-2 w-auto md:w-full sm:w-64 bg-white border-gray-300 rounded shadow-lg z-10">
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleSelectSort("Harga Terendah")}
+                          >
+                            Harga Terendah
+                          </button>
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleSelectSort("Harga Tertinggi")}
+                          >
+                            Harga Tertinggi
+                          </button>
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleSelectSort("Rating Tertinggi")}
+                          >
+                            Rating Tertinggi
+                          </button>
+                        </div>
+                      )}
+                    </div>
 
-                  {/* View Mode Toggle */}
-                  <div className="relative flex justify-between md:justify-center items-center gap-2 text-black w-full sm:w-auto">
-                    <p className="text-xs font-semibold">Tampilan:</p>
-                    <button className="flex items-center gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl text-sm bg-white">
-                      <CgMenuGridO size={18} color="gray" cursor={"pointer"} />
-                      <BsTextParagraph size={18} cursor={"pointer"} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col gap-4 mt-4">
-              {sortedHotels?.map((hotel) => (
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden  md:grid md:grid-cols-10 md:gap-4">
-                  <div className="md:col-span-3">
-                    <img
-                      src={hotel.imageMain}
-                      alt="Hotel Image"
-                      className="w-full h-40 object-cover"
-                    />
-                    <div className="grid grid-cols-3 gap-[2px] mt-[2px]">
-                      {hotel.imageGallery.map((image, index) => (
-                        <img
-                          key={index}
-                          src={image}
-                          alt={`Room ${index + 1}`}
-                          className="w-full h-16 object-cover "
+                    {/* Price Display Dropdown */}
+                    <div className="relative flex items-center gap-2 text-black w-full sm:w-auto">
+                      <p className="text-xs font-semibold">Tampilan Harga:</p>
+                      <button
+                        className="flex items-center justify-between w-full sm:w-auto gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl cursor-pointer text-sm bg-white"
+                        onClick={handlePriceDropdownToggle}
+                      >
+                        {selectedPrice} <BiChevronDown size={16} />
+                      </button>
+                      {isPriceDropdownOpen && (
+                        <div className="absolute mt-2 text-sm font-semibold top-10  right-0  w-auto md:w-full sm:w-48 bg-white border-gray-300 rounded shadow-lg z-10">
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleSelectPrice("Include Tax")}
+                          >
+                            Include Tax
+                          </button>
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleSelectPrice("Exclude Tax")}
+                          >
+                            Exclude Tax
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* View Mode Toggle */}
+                    <div className="relative flex justify-between md:justify-center items-center gap-2 text-black w-full sm:w-auto">
+                      <p className="text-xs font-semibold">Tampilan:</p>
+                      <button className="flex items-center gap-2 px-3 py-2 text-[#0194f3] font-semibold rounded-2xl text-sm bg-white">
+                        <CgMenuGridO
+                          size={18}
+                          color="gray"
+                          cursor={"pointer"}
                         />
-                      ))}
+                        <BsTextParagraph size={18} cursor={"pointer"} />
+                      </button>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-4 mt-4">
+                {sortedHotels?.map((hotel) => (
+                  <div className="bg-white shadow-lg rounded-lg overflow-hidden  md:grid md:grid-cols-10 md:gap-4">
+                    <div className="md:col-span-3">
+                      <img
+                        src={hotel.imageMain}
+                        alt="Hotel Image"
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="grid grid-cols-3 gap-[2px] mt-[2px]">
+                        {hotel.imageGallery.map((image, index) => (
+                          <img
+                            key={index}
+                            src={image}
+                            alt={`Room ${index + 1}`}
+                            className="w-full h-16 object-cover "
+                          />
+                        ))}
+                      </div>
+                    </div>
 
-                  <div className="mt-4 md:mt-0 md:col-span-5 flex flex-col border-r-2  border-gray-200 px-3 py-2">
-                    <div>
-                      <div className="w-full flex flex-col md:flex-row md:justify-between items-start">
-                        <h3 className="text-lg font-bold text-black">
-                          {hotel.name}
-                        </h3>
-                        <div>
-                          <div className="flex flex-row md:flex-col items-center gap-1">
-                            <div className="flex items-center gap-1">
-                              <img src={birdTraveloka} width={20} alt="" />
-                              <span className="text-sm font-bold text-[#1ba0e2]">
-                                {hotel.rating}
-                              </span>
-                              <span className="text-sm text-gray-600">
-                                ({hotel.reviews})
-                              </span>
-                            </div>
-                            <div className="w-auto md:w-full">
-                              <p className="text-xs text-end font-semibold text-gray-600">
-                                {hotel.description}
-                              </p>
+                    <div className="mt-4 md:mt-0 md:col-span-5 flex flex-col border-r-2  border-gray-200 px-3 py-2">
+                      <div>
+                        <div className="w-full flex flex-col md:flex-row md:justify-between items-start">
+                          <h3 className="text-lg font-bold text-black">
+                            {hotel.name}
+                          </h3>
+                          <div>
+                            <div className="flex flex-row md:flex-col items-center gap-1">
+                              <div className="flex items-center gap-1">
+                                <img src={birdTraveloka} width={20} alt="" />
+                                <span className="text-sm font-bold text-[#1ba0e2]">
+                                  {hotel.rating}
+                                </span>
+                                <span className="text-sm text-gray-600">
+                                  ({hotel.reviews})
+                                </span>
+                              </div>
+                              <div className="w-auto md:w-full">
+                                <p className="text-xs text-end font-semibold text-gray-600">
+                                  {hotel.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center space-x-2 mt-2">
-                        <div className="text-sm rounded-md px-2 font-semibold bg-[#ecf8ff] text-[#0264c8]">
-                          {hotel.category}
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center space-x-2 mt-2">
+                          <div className="text-sm rounded-md px-2 font-semibold bg-[#ecf8ff] text-[#0264c8]">
+                            {hotel.category}
+                          </div>
+                          <span className="text-yellow-500 text-lg">★★★★★</span>
                         </div>
-                        <span className="text-yellow-500 text-lg">★★★★★</span>
+                        <div className="font-semibold flex items-center gap-1">
+                          <FaLocationDot color="gray" size={14} />
+                          <p className="text-sm text-gray-600">
+                            {hotel.location}
+                          </p>
+                        </div>
+                        <ul className="flex flex-wrap gap-2 mt-2 text-xs text-gray-700">
+                          {hotel.facilities.map((facility, index) => (
+                            <li
+                              className="bg-gray-200 px-2 py-1 rounded-lg"
+                              key={index}
+                            >
+                              {facility}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <div className="font-semibold flex items-center gap-1">
-                        <FaLocationDot color="gray" size={14} />
-                        <p className="text-sm text-gray-600">
-                          {hotel.location}
-                        </p>
-                      </div>
-                      <ul className="flex flex-wrap gap-2 mt-2 text-xs text-gray-700">
-                        {hotel.facilities.map((facility, index) => (
-                          <li
-                            className="bg-gray-200 px-2 py-1 rounded-lg"
-                            key={index}
-                          >
-                            {facility}
-                          </li>
-                        ))}
-                      </ul>
                     </div>
-                  </div>
 
-                  <div className="mt-4 md:mt-0 md:col-span-2 flex flex-col justify-end text-right p-4">
-                    <div className="text-green-600 font-semibold text-xs">
-                      Best Value
+                    <div className="mt-4 md:mt-0 md:col-span-2 flex flex-col justify-end text-right p-4">
+                      <div className="text-green-600 font-semibold text-xs">
+                        Best Value
+                      </div>
+                      <div className="flex items-center gap-2 justify-end">
+                        <span className="font-bold text-xs text-green-700">
+                          {hotel.discount}
+                        </span>
+                        <span className="text-gray-400 font-semibold line-through text-sm">
+                          {formatPrice(hotel.originalPrice)}
+                        </span>
+                      </div>
+                      <div className="text-[#ff5e1f] font-bold text-xl">
+                        {formatPrice(hotel.discountedPrice)}
+                      </div>
+                      <div className="text-xs text-gray-600 font-semibold">
+                        Diluar Pajak dan Biaya
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => handlePilihKamar(hotel.id)}
+                          className="bg-[#ff5e1f] text-white px-2 font-semibold py-1 rounded-lg cursor-pointer mt-4 w-auto "
+                        >
+                          Pilih Kamar
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 justify-end">
-                      <span className="font-bold text-xs text-green-700">
-                        {hotel.discount}
-                      </span>
-                      <span className="text-gray-400 font-semibold line-through text-sm">
-                        {hotel.originalPrice}
-                      </span>
-                    </div>
-                    <div className="text-[#ff5e1f] font-bold text-xl">
-                      {hotel.discountedPrice}
-                    </div>
-                    <div className="text-xs text-gray-600 font-semibold">
-                      Diluar Pajak dan Biaya
-                    </div>
-                    <button
-                      onClick={() => handlePilihKamar(hotel.id)}
-                      className="bg-[#ff5e1f] text-white px-2 font-semibold py-1 rounded-lg cursor-pointer mt-4 w-full"
-                    >
-                      Pilih Kamar
-                    </button>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          // tampilan ketika data kosong
+          <div className="flex justify-center items-center h-52">
+            <div className="flex flex-col items-center text-black">
+              <h2 className="text-lg font-semibold">Data Kosong</h2>
+              <p className="text-sm mt-2">Coba cari dengan kata kunci lain.</p>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

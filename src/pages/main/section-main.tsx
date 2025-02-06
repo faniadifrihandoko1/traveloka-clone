@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidPlaneAlt } from "react-icons/bi";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaBus, FaHotel, FaRegCalendarAlt } from "react-icons/fa";
@@ -9,23 +9,59 @@ import { MdAttractions, MdOutlineCarRental } from "react-icons/md";
 import { TbBuildingAirport } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import bgTraveloka from "../../assets/bg-traveloka.jpg";
+import aii from "../../assets/image/content/trusted/aii.png";
+import archi from "../../assets/image/content/trusted/archipelago.png";
+import artotel from "../../assets/image/content/trusted/artotel.png";
+import citytrans from "../../assets/image/content/trusted/cititrans.png";
+import dprima from "../../assets/image/content/trusted/dprima.png";
+import ihg from "../../assets/image/content/trusted/ihg.png";
+import santika from "../../assets/image/content/trusted/santika.png";
+import swiss from "../../assets/image/content/trusted/swiss.png";
+
+const trusted = [
+  { name: "Artotel", image: artotel },
+  { name: "D'Prima", image: dprima },
+  { name: "Santika", image: santika },
+  { name: "Swiss", image: swiss },
+  { name: "IHG", image: ihg },
+  { name: "Citytrans", image: citytrans },
+  { name: "Archipelago", image: archi },
+  { name: "AIi", image: aii },
+];
 
 const SectionMain = () => {
   const navigate = useNavigate();
-  const [search, setSearch] = useState("Depok");
+  const [search, setSearch] = useState("Jakarta");
   const isMobile = window.innerWidth < 768;
+
+  const [visibleItems, setVisibleItems] = useState(trusted.slice(0, 4));
+  const [fade, setFade] = useState(false);
+  let index = 0;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(true); 
+      setTimeout(() => {
+        index = (index + 4) % trusted.length;
+        setVisibleItems(trusted.slice(index, index + 4)); 
+        setFade(false);
+      }, 500);
+    }, 3000); 
+
+    return () => clearInterval(interval);
+  }, [trusted]);
 
   const handleSearch = () => {
     navigate(`/hotel?destination=${search}`);
   };
   return (
-    <div className="relative py-10 md:py-0 md:min-h-[80vh] px-4 md:px-0">
+    <div className="relative py-10 md:py-0 md:min-h-[85vh] px-4 md:px-0">
       <div
         className="hidden md:block absolute top-0 left-0 w-full h-full bg-cover bg-center -z-10"
         style={{ backgroundImage: `url(${bgTraveloka})` }}
       />
 
-      <div className="container max-w-7xl mx-auto flex flex-col items-center pt-20 md:pt-40 text-center">
+      <div className="container max-w-7xl mx-auto flex flex-col items-center pt-16 md:pt-40 text-center">
         <h1 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">
           Wujudkan Perjalananmu dengan Caramu
         </h1>
@@ -72,7 +108,29 @@ const SectionMain = () => {
           )}
         </div>
 
-        <div className="w-full md:w-7xl">
+        <div className="flex w-full md:px-8 px-4  items-center gap-3 mb-4 ">
+          <div className="bg-[#0194f3] flex items-center gap-1 font-bold rounded-2xl px-3 py-1 cursor-pointer">
+            <FaHotel size={16} />
+            Hotel
+          </div>
+          <div className="cursor-pointer bg-opacity-75 backdrop-blur-md backdrop-opacity-75 flex items-center gap-1 font-bold rounded-2xl px-3 py-1">
+            <FaHotel size={16} />
+            Villa
+          </div>
+          <div className="cursor-pointer bg-opacity-75 backdrop-blur-md backdrop-opacity-75 flex items-center gap-1 font-bold rounded-2xl px-3 py-1">
+            <FaHotel size={16} />
+            Appartemen
+          </div>
+        </div>
+
+        <div className="w-full md:w-7xl md:px-8">
+          <div className="md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mb-2 hidden">
+            <div className="justify-self-start  ">Kota Tujuan Nama Hotel</div>
+            <div className="justify-self-start  -ml-6">
+              Tanggal Check-in & Check-out
+            </div>
+            <div className="justify-self-start  -ml-12">Tamu dan Kamar</div>
+          </div>
           <div className="bg-white p-2 md:p-0 md:pl-2 min-h-14 rounded-2xl md:rounded-3xl shadow-md flex flex-col md:flex-row gap-2 md:gap-4 border-[2px] md:border-[3px] border-gray-500">
             <div className="flex items-center gap-2 flex-1 border-b md:border-b-0 md:border-r-2 border-gray-300">
               <GrLocation color="#0194f3" size={20} cursor="pointer" />
@@ -109,6 +167,29 @@ const SectionMain = () => {
             >
               <IoSearchSharp size={22} />
             </div>
+          </div>
+        </div>
+        <div className="w-full md:w-7xl md:px-8 h-8  mt-10 hidden md:block">
+          <div className="flex items-center gap-2 justify-center">
+            <h2 className="font-semibold text-white italic">Trusted By</h2>
+
+            {visibleItems.map((item) => (
+              // <div className="px-2  p-1  hover:bg-white text-white">
+              <div
+                key={item.name}
+                className={`px-2 p-1 hover:bg-white text-white transition-all ${
+                  fade ? "opacity-0 " : "opacity-100 "
+                } duration-700`}
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  key={item.name}
+                  className="h-7 filter brightness-0 invert saturate-0 hover:filter-none transition-all duration-300"
+                  color="white"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

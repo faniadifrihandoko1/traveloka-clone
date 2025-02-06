@@ -76,7 +76,7 @@ const BookingPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-10 gap-8">
             {/* Section Kiri */}
-            <div className="md:col-span-7 space-y-6  h-auto min-h-full">
+            <div className="md:col-span-7 space-y-6  h-auto min-h-full order-2 md:order-1">
               {/* Profil Pengguna */}
               <div className="bg-white p-4 rounded-lg shadow-md">
                 <p className="text-sm font-bold text-blue-600">
@@ -280,7 +280,7 @@ const BookingPage = () => {
             </div>
 
             {/* Section Kanan */}
-            <div className="bg-white  md:col-span-3 rounded-lg shadow-md space-y-2 w-full   mx-auto md:self-start">
+            <div className="bg-white  md:col-span-3 rounded-lg shadow-md space-y-2 w-full   mx-auto md:self-start order-1 md:order-2">
               {/* Hotel Info */}
               <div className="px-4 py-2">
                 <div className="flex items-center justify-between mt-1">

@@ -1,4 +1,5 @@
-import { FaUser } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaTimes, FaUser } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 
@@ -17,21 +18,97 @@ const subNavItems = [
   "Antar Jemput Bandara",
   "Rental Mobil",
   "Atraksi dan Aktivitas",
-  "Produk Lainnya ▼",
+  "Produk Lainnya",
 ];
 
 const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsSidebarOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div
       className={`w-full transition-all duration-300 z-50 
         ${isHome ? "fixed top-0" : "relative"} 
-        ${isScrolled ? "bg-white shadow-md text-[#0d1b23]" : "bg-transparent"}`}
+        ${
+          isScrolled
+            ? "bg-white shadow-md text-[#0d1b23]"
+            : "text-[#0d1b23] md:text-white md:bg-transparent"
+        }`}
     >
+      <div
+        className={`fixed inset-0 z-50 bg-black/50 transition-opacity duration-300 md:hidden ${
+          isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setIsSidebarOpen(false)}
+      />
+
+      <div
+        className={`fixed left-0 top-0 z-50 h-full w-[75%] bg-white transition-transform duration-300 transform md:hidden ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="p-4">
+          <div className="flex justify-between items-center mb-6">
+            <div className="font-bold">traveloka</div>
+            <FaTimes
+              className="text-2xl cursor-pointer"
+              onClick={() => setIsSidebarOpen(false)}
+            />
+          </div>
+
+          <nav className="flex flex-col gap-2">
+            {navItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md"
+              >
+                {item.icon && (
+                  <span className="w-5 h-5 flex items-center justify-center border-2 border-[#0885bb] text-[#91e902] text-xs px-1 py-0.5 rounded-full">
+                    {item.icon}
+                  </span>
+                )}
+                {item.label}
+                {item.dropdown && <IoIosArrowDown size={16} />}
+              </a>
+            ))}
+
+            <div className="mt-4 border-t pt-4">
+              {subNavItems.map((item, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  className="block p-2 hover:bg-gray-100 rounded-md"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </nav>
+        </div>
+      </div>
       <div className="flex items-center justify-center py-2 px-4">
         <div className="w-7xl mx-auto flex justify-between items-center px-4">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2 w-full  justify-between md:justify-normal md:w-auto">
+            <button
+              className={`md:hidden ${
+                isScrolled ? "text-[#0d1b23]" : "text-white"
+              } text-xl p-2`}
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
+              ☰
+            </button>
             <svg
               width="135"
               height="43"
@@ -129,7 +206,7 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
               ))}
             </nav>
 
-            <div className="flex gap-1">
+            <div className="md:flex gap-1 hidden">
               <button
                 className={`border cursor-pointer  px-2 py-1 rounded-md flex items-center gap-2  ${
                   isScrolled

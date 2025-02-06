@@ -141,7 +141,7 @@ const Footer = () => {
 
         <div className=" md:px-6">
           <h3 className="text-lg font-semibold mb-4 text-white">Tentang Traveloka</h3>
-          <ul className="space-y-2">
+          <ul className="space-y-2 font-semibold">
             <li>
               <a href="#" className="hover:underline">
                 Cara Pesan
@@ -179,7 +179,7 @@ const Footer = () => {
             </li>
           </ul>
           <h3 className="text-lg font-semibold mt-8 mb-2 text-white ">Follow kami di</h3>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 font-semibold">
             <div className="flex text-lg items-center gap-4 hover:text-blue-600 hover:underline">
               <FaFacebook />
               <a href="">Facebook</a>
@@ -201,7 +201,7 @@ const Footer = () => {
 
         <div className="md:px-6">
           <h3 className="text-lg font-semibold mb-4 text-white">Produk</h3>
-          <ul className="space-y-2">
+          <ul className="space-y-2 font-semibold">
             <li>
               <a href="#" className="hover:underline">
                 Hotel
@@ -282,7 +282,7 @@ const Footer = () => {
 
         <div>
           <h3 className="text-lg font-semibold mb-4 text-white">Lainnya</h3>
-          <ul className="space-y-2">
+          <ul className="space-y-2 font-semibold">
             <li>
               <a href="#" className="hover:underline">
                 Traveloka for Corporates
@@ -324,7 +324,6 @@ const Footer = () => {
           </h3>
           <div className="flex space-x-4">
             <img src={googleplay} alt="Google Play" className="w-32" />
-            <img src={googleplay} alt="App Store" className="w-32" />
           </div>
         </div>
       </div>
