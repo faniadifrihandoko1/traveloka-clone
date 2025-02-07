@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaTimes, FaUser } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { label: "Promo", icon: "%", href: "#" },
@@ -24,6 +24,7 @@ const subNavItems = [
 const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -110,6 +111,8 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
               ☰
             </button>
             <svg
+              className="cursor-pointer"
+              onClick={() => navigate("/")}
               width="135"
               height="43"
               viewBox="0 0 135 43"
