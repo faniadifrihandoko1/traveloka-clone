@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { FaStar, FaWifi } from "react-icons/fa";
 import { FaBuildingUser } from "react-icons/fa6";
@@ -25,6 +25,10 @@ const BookingPage = () => {
   const prevImage = () => {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="bg-white px-4 sm:px-6 lg:px-8">

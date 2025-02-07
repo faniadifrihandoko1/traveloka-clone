@@ -20,8 +20,12 @@ import prima from "../../assets/image/content/payment/prima.png";
 import paylater from "../../assets/image/content/payment/tpaylate.png";
 import visa from "../../assets/image/content/payment/visa.png";
 import logo from "../../assets/logo-travloka-black.svg";
+import { useEffect } from "react";
 
 const PaymentPages = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className=" bg-white px-4 md:pb-7">
@@ -210,7 +214,6 @@ const PaymentPages = () => {
                       </span>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -266,7 +269,6 @@ const PaymentPages = () => {
                   </div>
                 </div>
               </div>
-
 
               <div className="space-y-2    px-4">
                 <h3 className="font-bold text-black">
