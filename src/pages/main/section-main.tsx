@@ -32,6 +32,7 @@ const trusted = [
 const SectionMain = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("Jakarta");
+  const [isLoading, setIsLoading] = useState(false);
   const isMobile = window.innerWidth < 768;
 
   const [visibleItems, setVisibleItems] = useState(trusted.slice(0, 4));
@@ -40,19 +41,27 @@ const SectionMain = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(true); 
+      setFade(true);
       setTimeout(() => {
         index = (index + 4) % trusted.length;
-        setVisibleItems(trusted.slice(index, index + 4)); 
+        setVisibleItems(trusted.slice(index, index + 4));
         setFade(false);
       }, 500);
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [trusted]);
 
   const handleSearch = () => {
-    navigate(`/hotel?destination=${search}`);
+    if (!search || isLoading) return; // Hindari pencarian kosong atau klik berulang
+
+    setIsLoading(true); // Aktifkan loading
+    const time = new Date().toISOString(); // Ambil waktu sekarang dalam format ISO
+
+    setTimeout(() => {
+      navigate(`/hotel?destination=${search}&time=${encodeURIComponent(time)}`);
+      setIsLoading(false); // Matikan loading setelah navigasi
+    }, 1500); // Delay 1.5 detik
   };
   return (
     <div className="relative py-10 md:py-0 md:min-h-[85vh] px-4 md:px-0">
@@ -163,9 +172,15 @@ const SectionMain = () => {
 
             <div
               onClick={handleSearch}
-              className="bg-orange-500 text-white p-2 md:px-4 md:py-2 cursor-pointer rounded-xl md:rounded-l-none md:rounded-r-3xl hover:bg-orange-600 flex items-center justify-center"
+              className={`bg-orange-500 text-white p-2 md:px-4 md:py-2 cursor-pointer rounded-xl md:rounded-l-none md:rounded-r-3xl hover:bg-orange-600 flex items-center justify-center ${
+                isLoading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
-              <IoSearchSharp size={22} />
+              {isLoading ? (
+                <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div>
+              ) : (
+                <IoSearchSharp size={22} />
+              )}
             </div>
           </div>
         </div>
